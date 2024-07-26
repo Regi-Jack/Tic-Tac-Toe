@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: bla;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vh;
+    margin-top: 4vh;
+    min-height: 17vh;
+    /* max-height: 10vh; */
+    width: min(85vw, 444px)
+}
+
+.container {
+    display: flex;
+    justify-content: center;    
+}
+
+.grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    grid-template-columns: repeat(3, min(27vw, 134px));
+    grid-template-rows: repeat(3, min(18vh, 134px));
+    padding: 0.6vw;
+}
+
+.cell {
+    background-color:antiquewhite;
+    width: min(26vw, 130px);
+    height: min(17vh, 130px);
+    background-image: url("./svg/wood.jpeg");
+    filter: brightness(140%);
+}
+
+img {
+    width: min(26vw, 130px);
+    height: min(17vh, 130px);
+}
+
+.gameButtons {
+    display: flex;
+    justify-content: center;
+    padding: 4vh;
+}
+
+#newGame {
+    width: min(50vw, 284px);
+    height: min(6vh, 80px);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: min(8vw, 4vh);
+    border: 2px solid black;
+    font-family:'Courier New';
+    background-color: rgb(201, 209, 217);
+}
+
+@media (max-width: 420px) {
+    .cell:active {
+        filter: brightness(180%);
+    }
+    #newGame:active {
+        background-color: rgb(216, 225, 220);
+    }
+}
+
+@media (min-width: 768px) {
+    .cell:hover {
+        filter: brightness(180%);
+    }
+    #newGame:hover {
+        background-color: rgb(216, 225, 220);
+    }
+}
