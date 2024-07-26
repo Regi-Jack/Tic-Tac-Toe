@@ -7,6 +7,7 @@ let colSum = 0;
 let diagSum1 = 0;
 let diagSum2 = 0;
 let winner = null;
+let remainingCells = 9;
 let board = [
     [0, 0, 0],
     [0, 0, 0],
@@ -27,41 +28,48 @@ function gameOver(i, j, index) {
 
     if (rowSum == 3 || rowSum == -3) {
         winner = cells[index].innerHTML.split("/")[2].split(".")[0];
-        return true;
+        return 1;
     }
 
     for (let iter = 0; iter < 3; iter++) colSum += board[iter][j];
 
     if (colSum == 3 || colSum == -3) {
         winner = cells[index].innerHTML.split("/")[2].split(".")[0];
-        return true;
+        return 1;
     }
 
     diagSum1 = board[0][0] + board[1][1] + board[2][2];
     diagSum2 = board[0][2] + board[1][1] + board[2][0];
     if (diagSum1 == 3 || diagSum1 == -3) {
         winner = cells[index].innerHTML.split("/")[2].split(".")[0];
-        return true;
+        return 1;
     }
     if (diagSum2 == 3 || diagSum2 == -3) {
         winner = cells[index].innerHTML.split("/")[2].split(".")[0];
 
-        return true;
+        return 1;
     }
+    if (remainingCells == 0)
+        return 2;
 
-    return false;
+    return 0;
 }
 
 function handleClick(index) {
     if (!cells[index].innerHTML && winner===null) {
         cells[index].innerHTML = `<img src="./svg/${turn}.svg">`;
+        remainingCells-=1;
         turn === "x" ? (points = 1) : (points = -1);
         turn === "x" ? (turn = "o") : (turn = "x");
         board[Math.floor(index / 3)][index % 3] = points;
         console.log(board[1][1]);
-        if (gameOver(Math.floor(index / 3), index % 3, index)) {
-            console.log(`${winner} wins!`);
-            message.innerHTML = `<img src="./svg/${winner}.svg"> won!`;
+        let result = gameOver(Math.floor(index / 3), index % 3, index);
+        if (result == 1) {
+            // console.log(`${winner} wins!`);
+            message.innerHTML = `<img src="./svg/${winner}.svg"> wins!`;
+        }
+        else if(result == 2) {
+            message.innerHTML = `Its a tie!`;
         }
     }
 }
@@ -84,6 +92,7 @@ newGame.addEventListener("click", ()=>{
         [0, 0, 0],
         [0, 0, 0],
     ]
+    remainingCells = 9;
 })
 
 
