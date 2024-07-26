@@ -60,7 +60,7 @@ function handleClick(index) {
         board[Math.floor(index / 3)][index % 3] = points;
         console.log(board[1][1]);
         if (gameOver(Math.floor(index / 3), index % 3, index)) {
-            console.log(`${winner} won!`);
+            console.log(`${winner} wins!`);
             message.innerHTML = `<img src="./svg/${winner}.svg"> won!`;
         }
     }
